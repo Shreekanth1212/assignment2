@@ -1,0 +1,194 @@
+import java.sql.SQLException;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+       while(true) {
+           Scanner sk = new Scanner(System.in);
+           System.out.println("Enter the value");
+           System.out.println(" 1 for upadate bank name");
+           System.out.println(" 2 for account balance");
+           System.out.println(" 3 for update mobile no ");
+           System.out.println(" 4for show all data ");
+           System.out.println(" 5 for EXIT");
+
+
+           int a=sk.nextInt();
+
+           if(a==1) {
+               System.out.println("ENTER THE BANK ID");
+               int c = sk.nextInt();
+               System.out.println(" ENTER THE NEW BANK NAME");
+               String b = sk.next();
+               selectquery.updateBranchName(c, b);
+               // selectquery.insertquery("icicii","svg","5522225","58852","22225","578952","123");
+               selectquery.selectquery();
+           }
+           else if(a==2){
+               System.out.println("Enter the account ID");
+               int c=sk.nextInt();
+               System.out.println("The bank balance");
+               selectquery.getBalance(c);
+
+           }
+           else if(a==3){
+               System.out.println("Enter the account ID");
+               int e=sk.nextInt();
+               System.out.println("enter the new number");
+               String d=sk.next();
+              // String d="\""+si+"\"";
+               selectquery.number(e,d);
+
+           }
+           else if(a==4){
+
+               System.out.println("The customer details");
+               selectquery.alldata();
+
+           }
+           else if(a>4){
+               System.out.println("THANKYOU NO MORE SERVICE");
+           }
+       }
+    }
+}
+//function
+import java.sql.*;
+
+
+public class selectquery {
+    public static void selectquery() throws ClassNotFoundException, SQLException {
+        String url="jdbc:mysql://localhost:3306/banks";
+        String username="root";
+        String password="Sk@12122002";
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con= DriverManager.getConnection(url,username,password);
+        //System.out.println("sucess");
+        Statement s= con.createStatement();
+        ResultSet rs=s.executeQuery("select * from BANKDETALS");
+        while(rs.next()){
+            System.out.println(rs.getString("BANKNAME") +" "+rs.getString("BRANCH") +" "+rs.getString("BANKID") +" "+rs.getString("MICR")+" "+rs.getString("IFSC_CODE") +" "+rs.getString("TELENO")+" "+rs.getString("PINCODE") );
+
+        }
+
+    }
+
+    public static void getBalance( int id) throws ClassNotFoundException, SQLException {
+        String url="jdbc:mysql://localhost:3306/banks";
+        String username="root";
+        String password="Sk@12122002";
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con= DriverManager.getConnection(url,username,password);
+        //System.out.println("sucess");
+        Statement s= con.createStatement();
+        PreparedStatement ps = con.prepareStatement("select BALANCE from CUSTOMER_DETAILs where accno=?");
+        ps.setInt(1, id);
+        ResultSet rs= ps.executeQuery();
+        while (rs.next())
+        System.out.print(rs.getInt("balance"));
+        System.out.println();
+
+    }
+
+public static  void insertquery(String bk,String branch,String bankid,String micr,String ifsccode,String tele,String pin)throws ClassNotFoundException, SQLException {
+    String url = "jdbc:mysql://localhost:3306/banks";
+    String username = "root";
+    String password = "Sk@12122002";
+    Class.forName("com.mysql.cj.jdbc.Driver");
+    Connection con = DriverManager.getConnection(url, username, password);
+    //System.out.println("sucess");
+    Statement s = con.createStatement();
+    int row = s.executeUpdate("insert into bankdetals+ values('" + bk + "','"+branch+"','"+bankid+"','"+micr+"','"+ifsccode+"','"+tele+"','"+pin+"')");
+
+
+    if (row > 0) {
+        System.out.println("values inserted successfully");
+    } else {
+        System.out.println("no values");
+    }
+
+}
+
+
+    public static  void DELETE(String bk)throws ClassNotFoundException, SQLException {
+        String url = "jdbc:mysql://localhost:3306/banks";
+        String username = "root";
+        String password = "Sk@12122002";
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con = DriverManager.getConnection(url, username, password);
+        //System.out.println("sucess");
+        Statement s = con.createStatement();
+        int row = s.executeUpdate("insert into bankdetals+ values('" + bk + "')");
+
+
+        if (row > 0) {
+            System.out.println("values DELETE successfully");
+        } else {
+            System.out.println("ALREADY EXIST   ");
+        }
+
+    }
+    public static void updateBranchName(int id,String bankname)throws ClassNotFoundException, SQLException {
+        String url = "jdbc:mysql://localhost:3306/banks";
+        String username = "root";
+        String password = "Sk@12122002";
+        Class.forName("com.mysql.cj.jdbc.Driver");//driver classloading
+        Connection con = DriverManager.getConnection(url, username, password);//connection object creation
+//        Statement s=con.createStatement();
+//        int row= s.executeUpdate("insert into branch values("+id+",'"+branch+"','"+address+"');");
+        PreparedStatement ps = con.prepareStatement("update bankdetals set BANKNAME =?  where BANKID=?;");
+        ps.setString(1, bankname);
+        ps.setInt(2, id);
+        int row = ps.executeUpdate();
+        if (row > 0) {
+            System.out.println("values updated successfully");
+        } else {
+            System.out.println("values not updated");
+        }
+    }
+    public static void number(int e,String d)throws ClassNotFoundException, SQLException {
+        String url = "jdbc:mysql://localhost:3306/banks";
+        String username = "root";
+        String password = "Sk@12122002";
+        Class.forName("com.mysql.cj.jdbc.Driver");//driver classloading
+        Connection con = DriverManager.getConnection(url, username, password);//connection object creation
+//        Statement s=con.createStatement();
+//        int row= s.executeUpdate("insert into branch values("+id+",'"+branch+"','"+address+"');");
+        PreparedStatement ps = con.prepareStatement("update CUSTOMER_DETAILs set mobno =?  where accno=?");
+        ps.setString(1, d);
+        ps.setInt(2, e);
+
+         ps.executeUpdate();
+       printcus(e);
+
+    }
+    public static void printcus(int id) throws ClassNotFoundException, SQLException {
+        String url="jdbc:mysql://localhost:3306/banks";
+        String username="root";
+        String password="Sk@12122002";
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con= DriverManager.getConnection(url,username,password);
+        //System.out.println("sucess");
+        Statement s= con.createStatement();
+        ResultSet rs=s.executeQuery("select * from CUSTOMER_DETAILs where accno="+id);
+        while(rs.next()){
+            System.out.println(rs.getString("accno") +" "+rs.getString("name") +" "+rs.getString("mobno") );//+" "+rs.getString("MICR")+" "+rs.getString("IFSC_CODE") +" "+rs.getString("TELENO")+" "+rs.getString("PINCODE") );
+           break;
+        }
+
+    }
+
+    public static void alldata() throws ClassNotFoundException, SQLException {
+        String url="jdbc:mysql://localhost:3306/banks";
+        String username="root";
+        String password="Sk@12122002";
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con= DriverManager.getConnection(url,username,password);
+        //System.out.println("sucess");
+        Statement s= con.createStatement();
+        ResultSet rs=s.executeQuery("select * from CUSTOMER_DETAILs");
+        while(rs.next()){
+            System.out.println(rs.getString("accno") +" "+rs.getString("name") +" "+rs.getString("mobno") +" "+rs.getString("occupation")+" "+rs.getString("address") +" "+rs.getString("acctype")+" "+rs.getString("age")+" "+rs.getString("pan_num")+" "+rs.getString("gender") );
+
+        }
+}}

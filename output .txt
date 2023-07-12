@@ -1,0 +1,69 @@
+"C:\Program Files\Java\jdk-19\bin\java.exe" "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2022.3.2\lib\idea_rt.jar=50398:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2022.3.2\bin" -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 -classpath C:\Users\Personal\IdeaProjects\JDBC\out\production\JDBC;C:\Users\Personal\Downloads\mysql-connector-java-8.0.28.jar Main
+Enter the value
+ 1 for upadate bank name
+ 2 for account balance
+ 3 for update mobile no 
+ 4for show all data 
+ 5 for EXIT
+1
+ENTER THE BANK ID
+2
+ ENTER THE NEW BANK NAME
+cannara
+values updated successfully
+icici SIVAGANGAI 1 IC1234 IC2345 987456321 630563
+cannara MADURAI 2 FC1234 UCT2345 541456326 680562
+UCOS KOVAI 3 IC1234 HD4345 852456327 690561
+IDFC SIVAGANGAI 4 ID5434 IC2345 975456324 640565
+icicii svg 5522225 58852 22225 578952 123
+Enter the value
+ 1 for upadate bank name
+ 2 for account balance
+ 3 for update mobile no 
+ 4for show all data 
+ 5 for EXIT
+2
+Enter the account ID
+5452
+The bank balance
+862412
+Enter the value
+ 1 for upadate bank name
+ 2 for account balance
+ 3 for update mobile no 
+ 4for show all data 
+ 5 for EXIT
+3
+Enter the account ID
+5452
+enter the new number
+3214568798
+5452 MITHRA 3214568798
+Enter the value
+ 1 for upadate bank name
+ 2 for account balance
+ 3 for update mobile no 
+ 4for show all data 
+ 5 for EXIT
+4
+The customer details
+3452 SANJAI 8548214732 DEVELOPER KALLAKURUCHI CURRENT 21 FGA4356 M
+1552 DEEPA 9874561233 DOCTOR KOVAI SAVING 25 FGA4456 F
+5452 MITHRA 3214568798 POLICE SIVAGANGA SAVING 21 OGC4356 F
+2452 SRIKANTH 8438654830 IT MADURAI SAVING 21 OIA4345 M
+1452 SHREEKANTH 8248254830 FARMER SIVAGANGA SAVING 20 OIA4356 M
+1652 PRAVENNA 98485454830 IT KOVAI CURRENT 24 SIA4346 F
+Enter the value
+ 1 for upadate bank name
+ 2 for account balance
+ 3 for update mobile no 
+ 4for show all data 
+ 5 for EXIT
+5
+THANKYOU NO MORE SERVICE
+Enter the value
+ 1 for upadate bank name
+ 2 for account balance
+ 3 for update mobile no 
+ 4for show all data 
+ 5 for EXIT
